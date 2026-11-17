@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+/* Brand palette, taken from the ATHAR THOBES logo artwork. */
+@theme {
+  --color-ivory: #faf4e6;
+  --color-parchment: #f1e8d5;
+  --color-line: #e0d3bd;
+  --color-faint: #a8958c;
+  --color-muted: #776560;
+  --color-ink: #2a1719;
+  --color-oxblood: #3a0f12;
+  --color-maroon: #4a0a10;
+  --color-blush: #d9bdaa;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ivory);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

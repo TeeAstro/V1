@@ -1,0 +1,198 @@
+/*
+ * ATHAR THOBES: minimal luxury. Clean editorial layout in the brand's oxblood and ivory.
+ * Styles are scoped to the `.c2` wrapper set in `app/layout.tsx`.
+ */
+
+.c2 {
+  --c2-nav-h: 4.5rem;
+  /* Resolved here, where next/font sets --font-bodoni and --font-instrument. */
+  --font-c2-display: var(--font-bodoni), "Didot", "Times New Roman", serif;
+  --font-c2-sans: var(--font-instrument), system-ui, sans-serif;
+  background: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-c2-sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.c2 ::selection {
+  background: var(--color-oxblood);
+  color: var(--color-ivory);
+}
+
+.c2 :focus-visible {
+  outline: 1px solid var(--color-maroon);
+  outline-offset: 4px;
+}
+
+/* Type scale: Bodoni Moda for display, with optical sizing doing the work. */
+.c2-display,
+.c2-h2,
+.c2-h3,
+.c2-serif {
+  font-family: var(--font-c2-display);
+  font-optical-sizing: auto;
+  font-weight: 400;
+}
+.c2-display {
+  font-size: clamp(3.25rem, 10.5vw, 10.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+}
+.c2-h2 {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+.c2-h3 {
+  font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+/* Small tracked capitals, used for navigation, buttons and captions only. */
+.c2-caps {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.c2-shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 100rem;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 768px) {
+  .c2-shell {
+    padding-inline: 2.5rem;
+  }
+}
+@media (min-width: 1280px) {
+  .c2-shell {
+    padding-inline: 3.5rem;
+  }
+}
+
+/* Page margins from the large breakpoint up only (full-bleed gallery on phones). */
+@media (min-width: 1024px) {
+  .c2-shell-lg {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 100rem;
+    padding-inline: 2.5rem;
+  }
+}
+@media (min-width: 1280px) {
+  .c2-shell-lg {
+    padding-inline: 3.5rem;
+  }
+}
+
+/* Underline that draws in from the left on hover. */
+.c2-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+.c2-link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.c2-link:hover::after,
+.c2-link[aria-current="page"]::after,
+.c2-link[aria-pressed="true"]::after {
+  transform: scaleX(1);
+}
+/* Variant that starts underlined and redraws on hover. */
+.c2-link-on::after {
+  transform: scaleX(1);
+}
+.c2-link-on:hover::after {
+  animation: c2-redraw 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes c2-redraw {
+  0% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  45% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+  46% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.c2 .on-dark :focus-visible {
+  outline-color: var(--color-blush);
+}
+
+.c2-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.05rem 2rem;
+  background: var(--color-oxblood);
+  color: var(--color-ivory);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background-color 0.35s ease;
+}
+.c2-btn:hover {
+  background: var(--color-maroon);
+}
+.c2-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.c2-field {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--color-line);
+  background: transparent;
+  padding: 0.7rem 0;
+  font-size: 1rem;
+  color: var(--color-ink);
+  border-radius: 0;
+}
+.c2-field::placeholder {
+  color: var(--color-faint);
+}
+.c2-field:focus {
+  outline: none;
+  border-bottom-color: var(--color-ink);
+}
+
+/* Image frames zoom slowly when their link is hovered. */
+.c2-zoom img {
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+a:hover .c2-zoom img,
+.c2-zoom:hover img {
+  transform: scale(1.035);
+}
+
+.c2-noscrollbar {
+  scrollbar-width: none;
+}
+.c2-noscrollbar::-webkit-scrollbar {
+  display: none;
+}
